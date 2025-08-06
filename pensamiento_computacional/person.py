@@ -1,23 +1,27 @@
 
-
 class Persona:
-    def __init__(self, dni, nombre, apellido, direccion, telefono):
-        if len(nombre.split()) > 4:
-            raise ValueError("La persona no puede tener mas de 4 nombres")
-        if len(apellido.split()) > 3:
-            raise ValueError("La persona no puede tener mas de 3 apellidos")
+    def __init__(self, dni, nombre1, nombre2, nombre3, nombre4, apellido1, apellido2, apellido3, direccion, telefono):
         self.dni = dni
-        self.nombre = nombre
-        self.apellido = apellido
+        self.nombre1 = nombre1
+        self.nombre2 = nombre2
+        self.nombre3 = nombre3
+        self.nombre4 = nombre4
+        self.apellido1 = apellido1
+        self.apellido2 = apellido2
+        self.apellido3 = apellido3
         self.direccion = direccion
         self.telefono = telefono
+        self.IVacunas = []
 
     def __repr__(self):
         return (f"\nDNI: {self.dni}\n"
-                f"NOMBRE: {self.nombre}\n"
-                f"APELLIDO: {self.apellido}\n"
+                f"NOMBRE/S: {self.nombre1} {self.nombre2} {
+                    self.nombre3} {self.nombre4}\n"
+                f"APELLIDO/S: {self.apellido1} {
+                    self.apellido2} {self.apellido3}\n"
                 f"DIRECCION: {self.direccion}\n"
-                f"TELEFONO: {self.telefono}\n")
+                f"TELEFONO: {self.telefono}\n"
+                f"VACUNAS: {self.IVacunas}")
 
     def mostrarPersona(self):
         print(self)
@@ -25,40 +29,50 @@ class Persona:
     def mostrarDNI(self):
         print("\nDNI: {dni}\n".format(dni=self.dni))
 
-    def modificarApellido(self):
-        nuevoApe = input("Ingrese el apellido modificado: ")
-        print("\nEl nuevo apellido es: {apellido}\n".format(apellido=nuevoApe))
-        self.apellido = nuevoApe
+    def modificarApellidos(self):
+        print("Que apellido desea modificar?")
+        print(f"1. PRIMER APELLIDO: {self.apellido1}")
+        print(f"2. SEGUN APELLIDO: {self.apellido2}")
+        print(f"3. TERCER AEPLLIDO: {self.apellido3}")
+        option = int(input("Ingrese el numero correspondiente: "))
+        while option not in [1, 2, 3]:
+            print("ERROR: El valor ingresado no es valido.")
+            option = int(input("Intente nuevamente: "))
+        nuevoApe = input("\nIngrese el apellido modificado: ")
+        match option:
+            case 1:
+                self.apellido1 = nuevoApe
+            case 2:
+                self.apellido2 = nuevoApe
+            case 3:
+                self.apellido3 = nuevoApe
+        print(f"\nEl nuevo apellido es: {nuevoApe}")
 
     def modificarDireccion(self):
         nuevaDir = input("Ingrese la direccion modificada: ")
         self.direccion = nuevaDir
 
+    def agregarVacuna(self):
+        nuevaVacuna = input("Ingrese la vacuna a agregar: ")
+        self.IVacunas.append(nuevaVacuna)
 
-if __name__ == "__main__":
+    def modificarVacuna(self):
+        for i in self.IVacunas:
+            print(f"{i}. {self.IVacunas[i]}.")
+        nroVacuna = int(
+            input("\nIngrese el numero de la vacuna a modificar: "))
+        print(f"\nUsted selecciono la vacuna: {
+              nroVacuna}. {self.IVacunas[nroVacuna]}.\n")
+        nuevaVacuna = input("Ingrese la modificacion: ")
+        self.IVacunas[nroVacuna] = nuevaVacuna
 
-    test = Persona(40000000, "pedro", "paramo a a a", "en la casa", 11123123)
-
-    salir = 1
-
-    while salir:
-        print("#########################")
-        print("1.Mostrar persona")
-        print("2.Mostrar DNI")
-        print("3.Modificar apellido")
-        print("4.Modificar direccion")
-        print("5.Salir")
-        print("#########################")
-
-        opcion = input("Ingrese la opcion que desea: ")
-
-        if opcion == "1":
-            test.mostrarPersona()
-        elif opcion == "2":
-            test.mostrarDNI()
-        elif opcion == "3":
-            test.modificarApellido()
-        elif opcion == "4":
-            test.modificarDireccion()
-        elif opcion == "5":
-            salir = 0
+    def eliminarVacuna(self):
+        for i in self.IVacunas:
+            print(f"{i}. {self.IVacunas[i]}.")
+        nroVacuna = int(input("\nIngrese el numero de la vacuna a eliminar: "))
+        while nroVacuna > len(self.IVacunas) or nroVacuna < 0:
+            print("ERROR: El valor de la vacuna no es valido")
+            nroVacuna = int(input("Intente nuevamente: "))
+        print(f"\nUsted selecciono la vacuna: {
+              nroVacuna}. {self.IVacunas[nroVacuna]}.\n")
+        del self.IVacunas[nroVacuna]
