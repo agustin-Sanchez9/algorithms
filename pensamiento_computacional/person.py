@@ -15,19 +15,20 @@ class Persona:
 
     def __repr__(self):
         return (f"\nDNI: {self.dni}\n"
-                f"NOMBRE/S: {self.nombre1} {self.nombre2} {
-                    self.nombre3} {self.nombre4}\n"
-                f"APELLIDO/S: {self.apellido1} {
-                    self.apellido2} {self.apellido3}\n"
+                f"NOMBRE/S: {self.nombre1} {self.nombre2} {self.nombre3} {self.nombre4}\n"
+                f"APELLIDO/S: {self.apellido1} {self.apellido2} {self.apellido3}\n"
                 f"DIRECCION: {self.direccion}\n"
                 f"TELEFONO: {self.telefono}\n"
                 f"VACUNAS: {self.IVacunas}")
 
+
     def mostrarPersona(self):
         print(self)
 
+
     def mostrarDNI(self):
         print("\nDNI: {dni}\n".format(dni=self.dni))
+
 
     def modificarApellidos(self):
         print("Que apellido desea modificar?")
@@ -48,31 +49,32 @@ class Persona:
                 self.apellido3 = nuevoApe
         print(f"\nEl nuevo apellido es: {nuevoApe}")
 
+
     def modificarDireccion(self):
         nuevaDir = input("Ingrese la direccion modificada: ")
         self.direccion = nuevaDir
+
 
     def agregarVacuna(self):
         nuevaVacuna = input("Ingrese la vacuna a agregar: ")
         self.IVacunas.append(nuevaVacuna)
 
+
     def modificarVacuna(self):
-        for i in self.IVacunas:
-            print(f"{i}. {self.IVacunas[i]}.")
-        nroVacuna = int(
-            input("\nIngrese el numero de la vacuna a modificar: "))
-        print(f"\nUsted selecciono la vacuna: {
-              nroVacuna}. {self.IVacunas[nroVacuna]}.\n")
+        for idx, vacuna in enumerate(self.IVacunas):
+            print(f"{idx}. {vacuna}.")
+        nroVacuna = int(input("\nIngrese el numero de la vacuna a modificar: "))
+        print(f"\nUsted selecciono la vacuna: {nroVacuna}. {self.IVacunas[nroVacuna]}.\n")
         nuevaVacuna = input("Ingrese la modificacion: ")
         self.IVacunas[nroVacuna] = nuevaVacuna
 
+
     def eliminarVacuna(self):
-        for i in self.IVacunas:
-            print(f"{i}. {self.IVacunas[i]}.")
+        for idx, vacuna in enumerate(self.IVacunas):
+            print(f"{idx}. {vacuna}.")
         nroVacuna = int(input("\nIngrese el numero de la vacuna a eliminar: "))
         while nroVacuna > len(self.IVacunas) or nroVacuna < 0:
             print("ERROR: El valor de la vacuna no es valido")
             nroVacuna = int(input("Intente nuevamente: "))
-        print(f"\nUsted selecciono la vacuna: {
-              nroVacuna}. {self.IVacunas[nroVacuna]}.\n")
+        print(f"\nUsted selecciono la vacuna: {nroVacuna}. {self.IVacunas[nroVacuna]}.\n")
         del self.IVacunas[nroVacuna]
