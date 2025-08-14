@@ -83,7 +83,7 @@ def ejecutarAccion(accion):
             for persona in listaPersonas:
                 if persona.dni == dniPersona:
                     encontrado = 1
-                    remove.listaPersonas(persona)
+                    listaPersonas.remove(persona)
             if encontrado == 0:
                 print("No se encontro a la persona indicada. Intente nuevamente. \n")
             continuar()
@@ -186,11 +186,11 @@ if __name__ == "__main__":
         while True:
             try:
                 accion = int(input("Ingrese el numero de accion a realizar: "))
-                break
+                if accion not in accionesPermitidas:
+                    print("Error: no ingreso una accion valida.")
+                else:
+                    break
             except ValueError:
                 print("Error: no ingreso una accion valida.")
-
-        while accion not in accionesPermitidas:
-            print("Error: no ingreso una accion valida.")
-            accion = int(input("Ingrese el numero de accion a realizar: "))
+            
         ejecutarAccion(accion)

@@ -63,7 +63,15 @@ class Persona:
     def modificarVacuna(self):
         for idx, vacuna in enumerate(self.IVacunas):
             print(f"{idx}. {vacuna}.")
-        nroVacuna = int(input("\nIngrese el numero de la vacuna a modificar: "))
+        while True:
+            try:
+                nroVacuna = int(input("Ingrese el numero de la vacuna a eliminar: "))
+                if nroVacuna > len(self.IVacunas) or nroVacuna < 0:
+                    print("ERROR: Valor de la vacuna no es valido")
+                else:
+                    break
+            except ValueError:
+                print("ERROR: Valor de la vacuna no es valido")
         print(f"\nUsted selecciono la vacuna: {nroVacuna}. {self.IVacunas[nroVacuna]}.\n")
         nuevaVacuna = input("Ingrese la modificacion: ")
         self.IVacunas[nroVacuna] = nuevaVacuna
@@ -72,9 +80,14 @@ class Persona:
     def eliminarVacuna(self):
         for idx, vacuna in enumerate(self.IVacunas):
             print(f"{idx}. {vacuna}.")
-        nroVacuna = int(input("\nIngrese el numero de la vacuna a eliminar: "))
-        while nroVacuna > len(self.IVacunas) or nroVacuna < 0:
-            print("ERROR: El valor de la vacuna no es valido")
-            nroVacuna = int(input("Intente nuevamente: "))
+        while True:
+            try:
+                nroVacuna = int(input("Ingrese el numero de la vacuna a eliminar: "))
+                if nroVacuna > len(self.IVacunas) or nroVacuna < 0:
+                    print("ERROR: Valor de la vacuna no es valido")
+                else:
+                    break
+            except ValueError:
+                print("ERROR: Valor de la vacuna no es valido")
         print(f"\nUsted selecciono la vacuna: {nroVacuna}. {self.IVacunas[nroVacuna]}.\n")
         del self.IVacunas[nroVacuna]
