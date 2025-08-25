@@ -19,7 +19,7 @@ class Persona:
                 f"APELLIDO/S: {self.apellido1} {self.apellido2} {self.apellido3}\n"
                 f"DIRECCION: {self.direccion}\n"
                 f"TELEFONO: {self.telefono}\n"
-                f"VACUNAS: {self.IVacunas}")
+                f"VACUNAS: {self.IVacunas}\n")
 
 
     def mostrarPersona(self):
@@ -30,11 +30,29 @@ class Persona:
         print("\nDNI: {dni}\n".format(dni=self.dni))
 
 
+    def modificarNombres(self):
+        print("Que nombre desea modificar?")
+        print(f"1. PRIMER NOMBRE: {self.nombre1}")
+        print(f"2. SEGUNDO NOMBRE: {self.nombre2}")
+        if self.nombre2 != "":
+            print(f"3. TERCER NOMBRE: {self.nombre3}")
+        elif self.nombre2 != "" and self.nombre3 != "":
+            print(f"4. CUARTO NOMBRE: {self.nombre4}")
+        
+        while True:
+            try:
+                option = int(input("Ingrese el numero correspondiente: "))
+                break
+            except ValueError:
+                print("ERROR: no ingreso un valor valido.")
+
+
     def modificarApellidos(self):
         print("Que apellido desea modificar?")
         print(f"1. PRIMER APELLIDO: {self.apellido1}")
-        print(f"2. SEGUN APELLIDO: {self.apellido2}")
-        print(f"3. TERCER AEPLLIDO: {self.apellido3}")
+        print(f"2. SEGUNDO APELLIDO: {self.apellido2}")
+        if self.apellido2 != "":
+            print(f"3. TERCER APELLIDO: {self.apellido3}")
         option = int(input("Ingrese el numero correspondiente: "))
         while option not in [1, 2, 3]:
             print("ERROR: El valor ingresado no es valido.")
